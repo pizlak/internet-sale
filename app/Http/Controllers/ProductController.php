@@ -56,7 +56,7 @@ class ProductController extends Controller
 
         $products = Product::where('count', '>', 0)->orderBy($column, $method)->get();
 
-        return view('products', compact('products'));
+        return view('products', compact('products', 'request'));
     }
 
     public function index(): View

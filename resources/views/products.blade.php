@@ -24,19 +24,20 @@
                     <p>Фильтр:</p>
                     <div class="col-5">
                         <select name="column" class="form-select">
-                            <option value="title" selected>По названию</option>
-                            <option value="price">По цене</option>
-                            <option value="created_at">По дате создания</option>
+                            <option value="title" {{ $request->input('column') == 'title' ? 'selected' : '' }}>По названию</option>
+                            <option value="price" {{ $request->input('column') == 'price' ? 'selected' : '' }}>По цене</option>
+                            <option value="created_at" {{ $request->input('column') == 'created_at' ? 'selected' : '' }}>По дате создания</option>
                         </select>
                     </div>
-                    <div class="col-5">
+                    <div class="col-4">
                         <select  name="method" class="form-select">
-                            <option value="desc" selected>По убыванию</option>
-                            <option value="asc">По возрастанию</option>
+                            <option value="desc" {{ $request->input('method') == 'desc' ? 'selected' : '' }}>По убыванию</option>
+                            <option value="asc" {{ $request->input('method') == 'asc' ? 'selected' : '' }}>По возрастанию</option>
                         </select>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <button class="btn btn-primary">Сортировать</button>
+                        <a class="btn btn-warning ms-3" href="{{ route('products') }}">Сброить</a>
                     </div>
                 </div>
             </form>

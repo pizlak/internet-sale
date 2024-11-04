@@ -12,7 +12,7 @@
                         <a class="nav-link active" href="{{ route('profile', Auth::user()) }}">Личный кабинет</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href=" {{ route('products.user', Auth::user()) }}">Мои товары</a>
+                        <a class="nav-link active" href="{{ route('products.user', Auth::user()) }}">Мои товары</a>
                     </li>
                 @endauth
                 <li class="nav-item">
