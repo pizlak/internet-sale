@@ -43,18 +43,23 @@ class ProductController extends Controller
         return view('products-purchased', compact('user', 'purchasedProducts'));
     }
 
-    public function getUserProducts(User $user):  View
+    public function getUserProducts(User $user, Request $request):  View
     {
-        $products = $user->products()->orderByDesc('id')->get();
+        $column = $request->input('column') ?? 'id';
+        $method = $request->input('method') ?? 'asc';
 
-        return view('products', compact('products'));
+        $products = $user->products()
+            ->orderBy($column, $method)->get();
+
+        return view('products', compact('products', 'request'));
     }
     public function getAllProducts(Request $request):  View
     {
         $column = $request->input('column') ?? 'id';
         $method = $request->input('method') ?? 'asc';
 
-        $products = Product::where('count', '>', 0)->orderBy($column, $method)->get();
+        $products = Product::where('count', '>', 0)
+            ->orderBy($column, $method)->get();
 
         return view('products', compact('products', 'request'));
     }
